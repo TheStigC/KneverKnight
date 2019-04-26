@@ -17,7 +17,12 @@ public class Enemy : MonoBehaviour
     private Transform myTransform;
     private float step;
     private Collider2D col;
-    public Knight knight;
+    Knight knight;
+
+    private void Awake()
+    {
+        knight = GameObject.FindWithTag("Knight").GetComponent<Knight>(); 
+    }
 
     private void Start()
     {
