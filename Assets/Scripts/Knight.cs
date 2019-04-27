@@ -26,6 +26,7 @@ public class Knight : MonoBehaviour
     private Transform selectedObject;
     private Transform myTransform;
     private Transform pickUpTrigger;
+    private Collider2D col;
     private float step;
     private float timer;
     LevelManager levelManager;
@@ -35,7 +36,7 @@ public class Knight : MonoBehaviour
 
     private void Awake()
     {
-        levelManager = gameObject.GetComponent<LevelManager>();
+        levelManager = GameObject.FindWithTag("GameController").GetComponent<LevelManager>();
         sword = transform.Find("Sword");
         sword.gameObject.SetActive(true);
         shield = transform.Find("Shield");
@@ -53,6 +54,7 @@ public class Knight : MonoBehaviour
         AddAllObjects();
         SortTargetsByDistance();
         step = speed * Time.deltaTime;
+        col = GetComponent<Collider2D>();
         isAttacking = false;
         isDead = false;
         isMoving = true;
@@ -109,7 +111,8 @@ public class Knight : MonoBehaviour
             //drop sword
             sword.gameObject.SetActive(false);
             pickUpTrigger.gameObject.SetActive(false);
-            Instantiate(droppedSword, transform.position, Quaternion.identity);
+            droppedSword.transform.position = transform.position;
+            droppedSword.SetActive(true);
             swordScript.Dropped();
             attackDamage = 1;
             StartCoroutine(Cooldown());
@@ -119,7 +122,8 @@ public class Knight : MonoBehaviour
             //drop shield
             shield.gameObject.SetActive(false);
             pickUpTrigger.gameObject.SetActive(false);
-            Instantiate(droppedShield, transform.position, Quaternion.identity);
+            droppedShield.transform.position = transform.position;
+            droppedShield.SetActive(true);
             shieldScript.Dropped();
             shieldPower = 0;
             StartCoroutine(Cooldown());
@@ -134,7 +138,19 @@ public class Knight : MonoBehaviour
 
     public void Death()
     {
+        isMoving = false;
+        isAttacking = false;
+        isDead = true;
+        transform.gameObject.tag = "Dead";
+        col.enabled = false;
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
+        StartCoroutine(WaitForDeathScene());
+    }
 
+    IEnumerator WaitForDeathScene()
+    {
+        yield return new WaitForSeconds(5);
+        levelManager.LoadLevel("GameOver");
     }
 
     IEnumerator Cooldown()
@@ -184,7 +200,15 @@ public class Knight : MonoBehaviour
             isAttacking = true;
             print("enemy hit");
             enemyScript = collision.gameObject.GetComponent<Enemy>();
+        }
+    }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!isDead)
+        {
+            isAttacking = false;
+            isMoving = true;
         }
     }
 
@@ -195,5 +219,6 @@ public class Knight : MonoBehaviour
             print("goal hit");
         }
     }
+
 
 }

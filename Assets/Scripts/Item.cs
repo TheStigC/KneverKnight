@@ -26,10 +26,9 @@ public class Item : MonoBehaviour
 
     public void Dropped()
     {
-        gameObject.SetActive(true);
-
         Debug.Log("Dropped");
 
+        Debug.Log("Active? " + gameObject.activeInHierarchy);
 
         Vector3 velocity = new Vector3(Random.Range(minVelocity, maxVelocity), 20f, 0.0f);
         float torque = Random.Range(minVelocity, maxVelocity);

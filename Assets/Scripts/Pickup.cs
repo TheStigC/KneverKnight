@@ -22,14 +22,14 @@ public class Pickup : MonoBehaviour
         {
             knight.sword.gameObject.SetActive(true);
             knight.attackDamage = 5;
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
 
         if (collision.gameObject.tag =="Shield")
         {
             knight.shield.gameObject.SetActive(true);
             knight.shieldPower = 5;
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
 
         if (collision.gameObject.tag == "Squire" && squire.isCarrying)

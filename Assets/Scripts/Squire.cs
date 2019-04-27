@@ -8,11 +8,13 @@ public class Squire : MonoBehaviour
 
     public float runSpeed = 40f;
     public bool isCarrying = false;
+    public int currentHealth = 100;
     public Transform sword;
     public Transform shield;
 
     private float horizontalMove = 0f;
     private bool jump = false;
+    private bool isDead = false;
     Item carriedItem;
 
     private void Awake()
@@ -52,6 +54,21 @@ public class Squire : MonoBehaviour
     {
         controller.Move(horizontalMove * Time.deltaTime, false, jump);
         jump = false;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

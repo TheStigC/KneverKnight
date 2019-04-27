@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 1614141208439900667}
+  shield: {fileID: 7798558276592248514}
 --- !u!1 &1614141208439900667
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,15 +254,14 @@ MonoBehaviour:
   targets: []
   currentHealth: 100
   attackDamage: 5
+  shieldPower: 5
   cooldownTimer: 2
   timeBetweenAttacks: 1
   speed: 1
   objectTag1: Goal
   objectTag2: Enemy
-  droppedSword: {fileID: 7720482753645392896, guid: 42dd47dda441ad24492f1e4ae2b988c8,
-    type: 3}
-  droppedShield: {fileID: 7879455225172901731, guid: f6c04feac37d06c4887aef795d21f318,
-    type: 3}
+  droppedSword: {fileID: 0}
+  droppedShield: {fileID: 0}
   sword: {fileID: 0}
   shield: {fileID: 0}
 --- !u!61 &4654957199545298131

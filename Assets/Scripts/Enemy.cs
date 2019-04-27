@@ -48,18 +48,17 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        SortTargetsByDistance();
-
         timer += Time.deltaTime;
 
         if (isMoving && !isDead)
         {
+            SortTargetsByDistance();
             transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
         }
 
         if (isAttacking && timer >= timeBetweenAttacks)
         {
-            //Attack();
+            Attack();
         }
 
     }
