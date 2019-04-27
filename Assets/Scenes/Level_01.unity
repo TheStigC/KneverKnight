@@ -3406,6 +3406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   isMoving: 0
+  isAnimatingMovement: 0
   isDead: 0
   targets: []
   currentHealth: 100
