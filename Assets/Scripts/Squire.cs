@@ -56,7 +56,7 @@ public class Squire : MonoBehaviour
             carriedItem.Thrown();
         }
 
-        if(Input.GetKeyDown(KeyCode.F) && bombs > 0)
+        if(Input.GetKeyDown(KeyCode.F) && bombs > 0 && bombScript.throwReady)
         {
             bombs -= 1;
             bomb.transform.position = top.transform.position;

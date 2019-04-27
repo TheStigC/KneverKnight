@@ -41,5 +41,32 @@ public class Bomb : MonoBehaviour
 
         rb2d.AddTorque(torque);
         rb2d.AddForce(velocity * power);
+
+        StartCoroutine(BombTimer());
+    }
+
+    IEnumerator BombTimer ()
+    {
+        yield return new WaitForSeconds(5);
+
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, expRadius, 1 << LayerMask.NameToLayer("Enemy"));
+
+        foreach (Collider2D en in enemies)
+        {
+            Rigidbody2D rb = en.GetComponent<Rigidbody2D>();
+            if(rb != null && rb.tag == "Enemy")
+            {
+                Enemy enemy = rb.GetComponent<Enemy>();
+                if(enemy)
+                enemy.TakeDamage(damage);
+
+                Vector3 deltaPos = rb.transform.position - transform.position;
+
+                Vector3 force = deltaPos.normalized * expForce;
+                rb.AddForce(force);
+            }
+        }
+        gameObject.SetActive(false);
+        throwReady = true;
     }
 }

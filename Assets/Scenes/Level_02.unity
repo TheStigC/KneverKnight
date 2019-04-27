@@ -411,11 +411,6 @@ PrefabInstance:
       propertyPath: droppedShield
       value: 
       objectReference: {fileID: 231993406}
-    - target: {fileID: 4654957199545298140, guid: 032cf270eebafd24e8fccfc45304d162,
-        type: 3}
-      propertyPath: timeBetweenAttacks
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 032cf270eebafd24e8fccfc45304d162, type: 3}
 --- !u!1 &231993406 stripped
