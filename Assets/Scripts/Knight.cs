@@ -11,13 +11,16 @@ public class Knight : MonoBehaviour
     public List<Transform> targets;
     public int currentHealth = 100;
     public int attackDamage = 5;
+    public int shieldPower = 5;
     public float cooldownTimer = 2;
     public float timeBetweenAttacks = 0.5f;
     public float speed = 1;
     public string objectTag1 = "Goal";
     public string objectTag2 = "Enemy";
     public GameObject droppedSword;
+    public GameObject droppedShield;
     public Transform sword;
+    public Transform shield;
 
     private List<GameObject> go;
     private Transform selectedObject;
@@ -28,14 +31,18 @@ public class Knight : MonoBehaviour
     LevelManager levelManager;
     Enemy enemyScript;
     Item swordScript;
+    Item shieldScript;
 
     private void Awake()
     {
         levelManager = gameObject.GetComponent<LevelManager>();
         sword = transform.Find("Sword");
         sword.gameObject.SetActive(true);
+        shield = transform.Find("Shield");
+        shield.gameObject.SetActive(true);
         pickUpTrigger = transform.Find("PickupTrigger");
         swordScript = droppedSword.GetComponent<Item>();
+        shieldScript = droppedShield.GetComponent<Item>();
     }
 
     private void Start()
@@ -65,6 +72,11 @@ public class Knight : MonoBehaviour
             Attack();
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            swordScript.Dropped();
+        }
+
     }
 
     public void Attack()
@@ -73,7 +85,7 @@ public class Knight : MonoBehaviour
 
         enemyScript.TakeDamage(attackDamage);
 
-        if(enemyScript.currentHealth <= 0)
+        if (enemyScript.currentHealth <= 0)
         {
             go.RemoveAt(0);
             isMoving = true;
@@ -84,7 +96,7 @@ public class Knight : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        currentHealth -= amount - shieldPower;
 
         float randValue = Random.value;
 
@@ -92,15 +104,26 @@ public class Knight : MonoBehaviour
         {
 
         }
-        else if (sword.gameObject.activeSelf)
+        else if (randValue < .9f && sword.gameObject.activeSelf)
         {
             //drop sword
             sword.gameObject.SetActive(false);
             pickUpTrigger.gameObject.SetActive(false);
-            StartCoroutine(Cooldown());
             Instantiate(droppedSword, transform.position, Quaternion.identity);
             swordScript.Dropped();
             attackDamage = 1;
+            StartCoroutine(Cooldown());
+        }
+        else if (shield.gameObject.activeSelf)
+        {
+            //drop shield
+            shield.gameObject.SetActive(false);
+            pickUpTrigger.gameObject.SetActive(false);
+            Instantiate(droppedShield, transform.position, Quaternion.identity);
+            shieldScript.Dropped();
+            shieldPower = 0;
+            StartCoroutine(Cooldown());
+
         }
 
         if (currentHealth <= 0 && !isDead)
@@ -114,7 +137,7 @@ public class Knight : MonoBehaviour
 
     }
 
-    IEnumerator Cooldown ()
+    IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(cooldownTimer);
         pickUpTrigger.gameObject.SetActive(true);
@@ -127,9 +150,9 @@ public class Knight : MonoBehaviour
 
         GameObject[] enemyArray = GameObject.FindGameObjectsWithTag(objectTag2);
         GameObject goal = GameObject.FindGameObjectWithTag(objectTag1);
-        go.Add(goal); 
-        
-        for(int i = 0; i < enemyArray.Length; i++)
+        go.Add(goal);
+
+        for (int i = 0; i < enemyArray.Length; i++)
         {
             go.Add(enemyArray[i]);
         }
@@ -147,14 +170,15 @@ public class Knight : MonoBehaviour
 
     public void SortTargetsByDistance()
     {
-        targets.Sort(delegate (Transform t1, Transform t2) {
+        targets.Sort(delegate (Transform t1, Transform t2)
+        {
             return Vector3.Distance(t1.position, myTransform.position).CompareTo(Vector3.Distance(t2.position, myTransform.position));
         });
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == objectTag2)
+        if (collision.gameObject.tag == objectTag2)
         {
             isMoving = false;
             isAttacking = true;
@@ -166,7 +190,7 @@ public class Knight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == objectTag1)
+        if (collision.tag == objectTag1)
         {
             print("goal hit");
         }

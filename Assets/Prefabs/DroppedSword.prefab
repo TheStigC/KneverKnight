@@ -144,3 +144,4 @@ MonoBehaviour:
   power: 10
   minVelocity: -20
   maxVelocity: 20
+  rb2d: {fileID: 2497788018124828798}
