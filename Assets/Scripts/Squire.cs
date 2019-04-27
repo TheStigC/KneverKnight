@@ -34,6 +34,7 @@ public class Squire : MonoBehaviour
         sword.gameObject.SetActive(false);
         shield.gameObject.SetActive(false);
         bombAmount.text = "X " + bombs;
+        healthSlider.value = startingHealth;
     }
 
     private void Update()

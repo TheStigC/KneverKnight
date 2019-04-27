@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7135955964506279713}
   - component: {fileID: 6158981294210329233}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BlackFade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,6 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6210456117154614730}
   - component: {fileID: 6210456117154614731}
+  - component: {fileID: 6210456117154614733}
   m_Layer: 0
   m_Name: _SceneManager
   m_TagString: GameController
@@ -217,3 +218,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb65e473026be0b42897af51ecf50d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 6210456117154614733}
+--- !u!95 &6210456117154614733
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210456117154614732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 49fde0039c8fd354aa83a2748f08ab1a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

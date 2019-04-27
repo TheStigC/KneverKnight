@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Knight : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Knight : MonoBehaviour
     public bool isDead;
     public List<Transform> targets;
     public int currentHealth = 100;
+    public int startingHealth = 100;
     public int attackDamage = 5;
     public int shieldPower = 5;
     public float push = 10f;
@@ -24,6 +26,7 @@ public class Knight : MonoBehaviour
     public Transform shield;
     public Enemy enemyScript;
     public List<GameObject> go;
+    public Slider healthSlider;
 
     private Animator myAnim;
     private Transform selectedObject;
@@ -49,6 +52,7 @@ public class Knight : MonoBehaviour
         swordScript = droppedSword.GetComponent<Item>();
         shieldScript = droppedShield.GetComponent<Item>();
         myAnim = GetComponentInChildren<Animator>();
+        healthSlider.value = startingHealth;
     }
 
     private void Start()
@@ -118,6 +122,8 @@ public class Knight : MonoBehaviour
     {
         currentHealth -= amount - shieldPower;
 
+        healthSlider.value = currentHealth;
+
         Vector3 velocity = new Vector3(-push, 10f, 0f);
         rb2d.AddForce(velocity*25);
 
@@ -173,12 +179,6 @@ public class Knight : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         levelManager.LoadLevel("GameOver");
-    }
-
-    IEnumerator WaitForWinScene()
-    {
-        yield return new WaitForSeconds(5);
-        levelManager.LoadNextLevel();
     }
 
     IEnumerator Cooldown()
@@ -247,7 +247,7 @@ public class Knight : MonoBehaviour
             print("goal hit");
             //play fanfare
             isMoving = false;
-            StartCoroutine(WaitForWinScene());
+            levelManager.FadeToLevel();
         }
     }
 
