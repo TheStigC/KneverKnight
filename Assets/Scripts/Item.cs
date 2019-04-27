@@ -36,8 +36,6 @@ public class Item : MonoBehaviour
         rb2d.AddTorque(torque);
         rb2d.AddForce(velocity * power);
 
-        StartCoroutine(Cooldown());
-
     }
 
     public void Thrown()
@@ -58,6 +56,9 @@ public class Item : MonoBehaviour
 
         rb2d.AddTorque(torque);
         rb2d.AddForce(velocity * power);
+
+        StartCoroutine(Cooldown());
+
     }
 
     IEnumerator Cooldown()

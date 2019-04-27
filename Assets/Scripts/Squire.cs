@@ -60,6 +60,23 @@ public class Squire : MonoBehaviour
     {
         currentHealth -= amount;
 
+        if (isCarrying)
+        {
+            if (sword.gameObject.activeSelf)
+            {
+                sword.gameObject.SetActive(false);
+            } else if (shield.gameObject.activeSelf)
+            {
+                shield.gameObject.SetActive(false);
+            }
+
+            isCarrying = false;
+            carriedItem.transform.position = transform.position;
+            carriedItem.gameObject.layer = 13;
+            carriedItem.gameObject.SetActive(true);
+            carriedItem.Dropped();
+        }
+
         if (currentHealth <= 0 && !isDead)
         {
             Death();

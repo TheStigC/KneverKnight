@@ -153,6 +153,12 @@ public class Knight : MonoBehaviour
         levelManager.LoadLevel("GameOver");
     }
 
+    IEnumerator WaitForWinScene()
+    {
+        yield return new WaitForSeconds(5);
+        levelManager.LoadNextLevel();
+    }
+
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(cooldownTimer);
@@ -217,6 +223,9 @@ public class Knight : MonoBehaviour
         if (collision.tag == objectTag1)
         {
             print("goal hit");
+            //play fanfare
+            isMoving = false;
+            StartCoroutine(WaitForWinScene());
         }
     }
 

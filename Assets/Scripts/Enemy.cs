@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
         }
         else if (currentTarget == objectTag2)
         {
-            //damage squire
+            squire.TakeDamage(attackDamage*2);
         }
     }
 
