@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public int attackDamage = 5;
     public float timeBetweenAttacks = 0.5f;
     public float speed = 1;
+    public float seeDistance = 5f;
     public string objectTag1 = "Knight";
     public string objectTag2 = "Squire";
 
@@ -51,7 +52,7 @@ public class Enemy : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (isMoving)
+        if (isMoving && !isDead)
         {
             transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
         }
@@ -125,6 +126,15 @@ public class Enemy : MonoBehaviour
         targets.Sort(delegate (Transform t1, Transform t2) {
             return Vector3.Distance(t1.position, myTransform.position).CompareTo(Vector3.Distance(t2.position, myTransform.position));
         });
+
+        if(Vector3.Distance(targets[0].position, transform.position) > seeDistance)
+        {
+            isMoving = false;
+        }
+        else
+        {
+            isMoving = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

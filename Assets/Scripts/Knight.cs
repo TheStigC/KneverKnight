@@ -11,25 +11,31 @@ public class Knight : MonoBehaviour
     public List<Transform> targets;
     public int currentHealth = 100;
     public int attackDamage = 5;
+    public float cooldownTimer = 2;
     public float timeBetweenAttacks = 0.5f;
     public float speed = 1;
     public string objectTag1 = "Goal";
     public string objectTag2 = "Enemy";
     public GameObject droppedSword;
+    public Transform sword;
 
     private List<GameObject> go;
     private Transform selectedObject;
     private Transform myTransform;
-    private Transform sword;
+    private Transform pickUpTrigger;
     private float step;
     private float timer;
     LevelManager levelManager;
     Enemy enemyScript;
+    Item swordScript;
 
     private void Awake()
     {
         levelManager = gameObject.GetComponent<LevelManager>();
         sword = transform.Find("Sword");
+        sword.gameObject.SetActive(true);
+        pickUpTrigger = transform.Find("PickupTrigger");
+        swordScript = droppedSword.GetComponent<Item>();
     }
 
     private void Start()
@@ -90,7 +96,11 @@ public class Knight : MonoBehaviour
         {
             //drop sword
             sword.gameObject.SetActive(false);
+            pickUpTrigger.gameObject.SetActive(false);
+            StartCoroutine(Cooldown());
             Instantiate(droppedSword, transform.position, Quaternion.identity);
+            swordScript.Dropped();
+            attackDamage = 1;
         }
 
         if (currentHealth <= 0 && !isDead)
@@ -102,6 +112,12 @@ public class Knight : MonoBehaviour
     public void Death()
     {
 
+    }
+
+    IEnumerator Cooldown ()
+    {
+        yield return new WaitForSeconds(cooldownTimer);
+        pickUpTrigger.gameObject.SetActive(true);
     }
 
     public void AddAllObjects()
