@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
+    public Animator animator;
+
     public void LoadLevel(string name)
     {
         Debug.Log("New Level load: " + name);
@@ -15,6 +17,11 @@ public class LevelManager : MonoBehaviour {
     {
         Debug.Log("Quit requested");
         Application.Quit();
+    }
+
+    public void FadeToLevel()
+    {
+        animator.SetTrigger("FadeOut");
     }
 
     public void LoadNextLevel()

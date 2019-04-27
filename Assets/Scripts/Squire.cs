@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Squire : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class Squire : MonoBehaviour
     public float runSpeed = 40f;
     public bool isCarrying = false;
     public int currentHealth = 100;
+    public int startingHealth = 100;
     public int bombs = 2;
+    public Slider healthSlider;
+    public Text bombAmount;
     public Transform sword;
     public Transform shield;
     public GameObject bomb;
@@ -29,6 +33,7 @@ public class Squire : MonoBehaviour
         bombScript = bomb.GetComponent<Bomb>();
         sword.gameObject.SetActive(false);
         shield.gameObject.SetActive(false);
+        bombAmount.text = "X " + bombs;
     }
 
     private void Update()
@@ -59,6 +64,7 @@ public class Squire : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F) && bombs > 0 && bombScript.throwReady)
         {
             bombs -= 1;
+            bombAmount.text = "X " + bombs;
             bomb.transform.position = top.transform.position;
             bomb.gameObject.SetActive(true);
             bombScript.Thrown();
@@ -73,6 +79,8 @@ public class Squire : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+
+        healthSlider.value = currentHealth;
 
         if (isCarrying)
         {

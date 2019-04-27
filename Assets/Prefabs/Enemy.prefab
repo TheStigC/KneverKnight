@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9036322182858019280}
   - component: {fileID: 9036322182858019283}
   - component: {fileID: 9036322182858019281}
-  - component: {fileID: 1986409419617041725}
+  - component: {fileID: 5445042762326261784}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -127,8 +127,8 @@ MonoBehaviour:
   push: 15
   objectTag1: Knight
   objectTag2: Squire
---- !u!61 &1986409419617041725
-BoxCollider2D:
+--- !u!70 &5445042762326261784
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -140,16 +140,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04332161, y: 3.3574996}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 4.96, y: 6.715}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.4112587, y: 6.4261904}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.59600365, y: 3.0057611}
+  m_Size: {x: 3.4162533, y: 6.0115223}
+  m_Direction: 0
