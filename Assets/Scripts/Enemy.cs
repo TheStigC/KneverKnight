@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public float timeBetweenAttacks = 0.5f;
     public float speed = 1;
     public float seeDistance = 5f;
+    public float push = 10f;
     public string objectTag1 = "Knight";
     public string objectTag2 = "Squire";
 
@@ -22,6 +23,8 @@ public class Enemy : MonoBehaviour
     private float step;
     private float timer;
     private Collider2D col;
+    private Rigidbody2D rb2d;
+    private bool m_FacingRight = false;
     private string currentTarget;
     Knight knight;
     Squire squire;
@@ -44,16 +47,27 @@ public class Enemy : MonoBehaviour
         isDead = false;
         isMoving = true;
         col = GetComponent<Collider2D>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
 
+        SortTargetsByDistance();
+
         if (isMoving && !isDead)
         {
-            SortTargetsByDistance();
             transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
+
+            if (transform.position.x < targets[0].position.x && !m_FacingRight)
+            {
+                Flip();
+            }
+            else  if (transform.position.x > targets[0].position.x && m_FacingRight)
+            {
+                Flip();
+            }
         }
 
         if (isAttacking && timer >= timeBetweenAttacks)
@@ -81,6 +95,9 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= amount;
 
+        Vector3 velocity = new Vector3(push, 10f, 0f);
+        rb2d.AddForce(velocity * 25);
+
         if (currentHealth <= 0 && !isDead)
         {
             Death();
@@ -96,6 +113,15 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         knight.AddAllObjects();
         knight.SortTargetsByDistance();
+    }
+
+    private void Flip()
+    {
+        m_FacingRight = !m_FacingRight;
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     public void AddAllObjects()
@@ -130,7 +156,7 @@ public class Enemy : MonoBehaviour
         {
             isMoving = false;
         }
-        else
+        else if (!isAttacking)
         {
             isMoving = true;
         }

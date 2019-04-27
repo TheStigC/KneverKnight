@@ -12,6 +12,7 @@ public class Knight : MonoBehaviour
     public int currentHealth = 100;
     public int attackDamage = 5;
     public int shieldPower = 5;
+    public float push = 10f;
     public float cooldownTimer = 2;
     public float timeBetweenAttacks = 0.5f;
     public float speed = 1;
@@ -27,6 +28,7 @@ public class Knight : MonoBehaviour
     private Transform myTransform;
     private Transform pickUpTrigger;
     private Collider2D col;
+    private Rigidbody2D rb2d;
     private float step;
     private float timer;
     LevelManager levelManager;
@@ -55,6 +57,7 @@ public class Knight : MonoBehaviour
         SortTargetsByDistance();
         step = speed * Time.deltaTime;
         col = GetComponent<Collider2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         isAttacking = false;
         isDead = false;
         isMoving = true;
@@ -100,6 +103,9 @@ public class Knight : MonoBehaviour
     {
         currentHealth -= amount - shieldPower;
 
+        Vector3 velocity = new Vector3(-push, 10f, 0f);
+        rb2d.AddForce(velocity*25);
+
         float randValue = Random.value;
 
         if (randValue < .8f)
@@ -111,7 +117,7 @@ public class Knight : MonoBehaviour
             //drop sword
             sword.gameObject.SetActive(false);
             pickUpTrigger.gameObject.SetActive(false);
-            droppedSword.transform.position = transform.position;
+            droppedSword.transform.position = GetComponent<Renderer>().bounds.center;
             droppedSword.SetActive(true);
             swordScript.Dropped();
             attackDamage = 1;
@@ -122,7 +128,7 @@ public class Knight : MonoBehaviour
             //drop shield
             shield.gameObject.SetActive(false);
             pickUpTrigger.gameObject.SetActive(false);
-            droppedShield.transform.position = transform.position;
+            droppedShield.transform.position = GetComponent<Renderer>().bounds.center;
             droppedShield.SetActive(true);
             shieldScript.Dropped();
             shieldPower = 0;

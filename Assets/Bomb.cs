@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Bomb : MonoBehaviour
 {
     public float power = 10f;
     public float minVelocity = -20f;
     public float maxVelocity = 20f;
+    public bool throwReady = true;
 
     public Rigidbody2D rb2d;
     private float throwPower;
@@ -17,30 +18,17 @@ public class Item : MonoBehaviour
     {
         controller = GameObject.FindWithTag("Squire").GetComponent<CharacterController2D>();
         rb2d = GetComponent<Rigidbody2D>();
-        gameObject.layer = 12;
-        gameObject.SetActive(true);
-    }
-
-    public void Dropped()
-    {
-        Vector3 velocity = new Vector3(Random.Range(minVelocity, maxVelocity), 20f, 0.0f);
-        float torque = Random.Range(minVelocity, maxVelocity);
-
-        rb2d.AddTorque(torque);
-        rb2d.AddForce(velocity * power);
-
-        StartCoroutine(Cooldown());
     }
 
     public void Thrown()
     {
-        gameObject.layer = 13;
-        StartCoroutine(Cooldown());
+        throwReady = false;
 
         if (controller.m_FacingRight)
         {
             throwPower = 50f;
-        } else
+        }
+        else
         {
             throwPower = -50f;
         }
@@ -50,15 +38,5 @@ public class Item : MonoBehaviour
 
         rb2d.AddTorque(torque);
         rb2d.AddForce(velocity * power);
-
-        StartCoroutine(Cooldown());
-
     }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(1);
-        gameObject.layer = 12;
-    }
-
 }
