@@ -124,6 +124,7 @@ MonoBehaviour:
   timeBetweenAttacks: 0.5
   speed: 2
   seeDistance: 25
+  push: 15
   objectTag1: Knight
   objectTag2: Squire
 --- !u!61 &1986409419617041725

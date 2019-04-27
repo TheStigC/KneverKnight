@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
 
     public void Dropped()
     {
-        Vector3 velocity = new Vector3(Random.Range(minVelocity, maxVelocity), 20f, 0.0f);
+        Vector3 velocity = new Vector3(Random.Range(minVelocity, maxVelocity), 30f, 0.0f);
         float torque = Random.Range(minVelocity, maxVelocity);
 
         rb2d.AddTorque(torque);
@@ -45,7 +45,7 @@ public class Item : MonoBehaviour
             throwPower = -50f;
         }
 
-        Vector3 velocity = new Vector3(throwPower, 20f, 0.0f);
+        Vector3 velocity = new Vector3(throwPower, 10f, 0.0f);
         float torque = Random.Range(minVelocity, maxVelocity);
 
         rb2d.AddTorque(torque);

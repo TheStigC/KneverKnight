@@ -36,7 +36,7 @@ public class Bomb : MonoBehaviour
             throwPower = -50f;
         }
 
-        Vector3 velocity = new Vector3(throwPower, 20f, 0.0f);
+        Vector3 velocity = new Vector3(throwPower, 10f, 0.0f);
         float torque = Random.Range(minVelocity, maxVelocity);
 
         rb2d.AddTorque(torque);

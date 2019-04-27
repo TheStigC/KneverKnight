@@ -98,7 +98,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 08264395434d3874ca0920f6fb12ba71, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -131,7 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f5c4858ae05e2479f77784e14fe075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 10
+  power: 30
   minVelocity: -20
   maxVelocity: 20
+  expRadius: 10
+  expForce: 300
+  damage: 10
+  throwReady: 1
   rb2d: {fileID: 0}

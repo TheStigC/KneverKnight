@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998f9ef74465d504db3d3ab21635ca48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 10
+  power: 25
   minVelocity: -50
   maxVelocity: 50
   rb2d: {fileID: 1325246583238402213}
