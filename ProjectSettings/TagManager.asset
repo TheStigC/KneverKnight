@@ -19,10 +19,10 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Knight
+  - Item
   - 
   - 
   - 

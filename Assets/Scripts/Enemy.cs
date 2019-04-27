@@ -9,19 +9,27 @@ public class Enemy : MonoBehaviour
     public bool isDead;
     public List<Transform> targets;
     public int currentHealth = 10;
+    public int attackDamage = 5;
+    public float timeBetweenAttacks = 0.5f;
     public float speed = 1;
     public string objectTag1 = "Knight";
     public string objectTag2 = "Squire";
+
     private List<GameObject> go;
     private Transform selectedObject;
     private Transform myTransform;
     private float step;
+    private float timer;
     private Collider2D col;
+    private string currentTarget;
     Knight knight;
+    Squire squire;
+
 
     private void Awake()
     {
-        knight = GameObject.FindWithTag("Knight").GetComponent<Knight>(); 
+        knight = GameObject.FindWithTag(objectTag1).GetComponent<Knight>();
+        squire = GameObject.FindWithTag(objectTag2).GetComponent<Squire>();
     }
 
     private void Start()
@@ -41,11 +49,32 @@ public class Enemy : MonoBehaviour
     {
         SortTargetsByDistance();
 
+        timer += Time.deltaTime;
+
         if (isMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
         }
 
+        if (isAttacking && timer >= timeBetweenAttacks)
+        {
+            Attack();
+        }
+
+    }
+
+    public void Attack()
+    {
+        timer = 0f;
+
+        if (currentTarget == objectTag1)
+        {
+            knight.TakeDamage(attackDamage);
+        }
+        else if (currentTarget == objectTag2)
+        {
+            //damage squire
+        }
     }
 
     public void TakeDamage(int amount)
@@ -60,6 +89,8 @@ public class Enemy : MonoBehaviour
 
     public void Death()
     {
+        isAttacking = false;
+        isDead = true;
         transform.gameObject.tag = "Dead";
         col.enabled = false;
         Destroy(gameObject.GetComponent<Rigidbody2D>());
@@ -103,11 +134,23 @@ public class Enemy : MonoBehaviour
             isMoving = false;
             isAttacking = true;
             print("knight hit");
+            currentTarget = objectTag1;
+            
         } else if (collision.gameObject.tag == objectTag2)
         {
             isMoving = false;
             isAttacking = true;
             print("squire hit");
+            currentTarget = objectTag2;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!isDead)
+        {
+            isAttacking = false;
+            isMoving = true;
         }
     }
 

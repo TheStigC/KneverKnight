@@ -15,9 +15,12 @@ public class Knight : MonoBehaviour
     public float speed = 1;
     public string objectTag1 = "Goal";
     public string objectTag2 = "Enemy";
+    public GameObject droppedSword;
+
     private List<GameObject> go;
     private Transform selectedObject;
     private Transform myTransform;
+    private Transform sword;
     private float step;
     private float timer;
     LevelManager levelManager;
@@ -26,6 +29,7 @@ public class Knight : MonoBehaviour
     private void Awake()
     {
         levelManager = gameObject.GetComponent<LevelManager>();
+        sword = transform.Find("Sword");
     }
 
     private void Start()
@@ -65,7 +69,6 @@ public class Knight : MonoBehaviour
 
         if(enemyScript.currentHealth <= 0)
         {
-            AddAllObjects();
             go.RemoveAt(0);
             isMoving = true;
             isAttacking = false;
@@ -76,6 +79,19 @@ public class Knight : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+
+        float randValue = Random.value;
+
+        if (randValue < .8f)
+        {
+
+        }
+        else if (sword.gameObject.activeSelf)
+        {
+            //drop sword
+            sword.gameObject.SetActive(false);
+            Instantiate(droppedSword, transform.position, Quaternion.identity);
+        }
 
         if (currentHealth <= 0 && !isDead)
         {
