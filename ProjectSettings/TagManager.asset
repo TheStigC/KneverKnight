@@ -10,6 +10,7 @@ TagManager:
   - Squire
   - Dead
   - Sword
+  - Shield
   layers:
   - Default
   - TransparentFX

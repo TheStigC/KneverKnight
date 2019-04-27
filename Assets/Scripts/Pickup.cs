@@ -6,6 +6,7 @@ public class Pickup : MonoBehaviour
 {
 
     public GameObject sword;
+    public GameObject shield;
     Knight knight;
     Squire squire;
 
@@ -21,7 +22,14 @@ public class Pickup : MonoBehaviour
         {
             knight.sword.gameObject.SetActive(true);
             knight.attackDamage = 5;
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
+        }
+
+        if (collision.gameObject.tag =="Shield")
+        {
+            knight.shield.gameObject.SetActive(true);
+            knight.shieldPower = 5;
+            collision.gameObject.SetActive(false);
         }
 
         if (collision.gameObject.tag == "Squire" && squire.isCarrying)
@@ -31,6 +39,12 @@ public class Pickup : MonoBehaviour
                 knight.sword.gameObject.SetActive(true);
                 knight.attackDamage = 5;
                 squire.sword.gameObject.SetActive(false);
+            }
+            else if (squire.shield.gameObject.activeSelf)
+            {
+                knight.shield.gameObject.SetActive(true);
+                knight.shieldPower = 5;
+                squire.shield.gameObject.SetActive(false);
             }
         }
     }

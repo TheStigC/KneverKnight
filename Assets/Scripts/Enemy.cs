@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public bool isDead;
     public List<Transform> targets;
     public int currentHealth = 10;
-    public int attackDamage = 5;
+    public int attackDamage = 10;
     public float timeBetweenAttacks = 0.5f;
     public float speed = 1;
     public float seeDistance = 5f;
@@ -48,12 +48,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        SortTargetsByDistance();
-
         timer += Time.deltaTime;
 
         if (isMoving && !isDead)
         {
+            SortTargetsByDistance();
             transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
         }
 
