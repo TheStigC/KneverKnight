@@ -7,6 +7,9 @@ public class Bomb : MonoBehaviour
     public float power = 10f;
     public float minVelocity = -20f;
     public float maxVelocity = 20f;
+    public float expRadius = 10f;
+    public float expForce = 100f;
+    public int damage = 10;
     public bool throwReady = true;
 
     public Rigidbody2D rb2d;

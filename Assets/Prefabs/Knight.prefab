@@ -255,8 +255,9 @@ MonoBehaviour:
   currentHealth: 100
   attackDamage: 5
   shieldPower: 5
+  push: 10
   cooldownTimer: 2
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 3
   speed: 2
   objectTag1: Goal
   objectTag2: Enemy

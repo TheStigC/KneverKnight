@@ -401,6 +401,7 @@ MonoBehaviour:
   runSpeed: 50
   isCarrying: 0
   currentHealth: 100
+  bombs: 2
   sword: {fileID: 0}
   shield: {fileID: 0}
   bomb: {fileID: 0}
