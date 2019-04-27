@@ -6,7 +6,7 @@ public class Knight : MonoBehaviour
 {
 
     public bool isAttacking;
-    public bool isMoving;
+    public bool isMoving, isAnimatingMovement;
     public bool isDead;
     public List<Transform> targets;
     public int currentHealth = 100;
@@ -22,8 +22,10 @@ public class Knight : MonoBehaviour
     public GameObject droppedShield;
     public Transform sword;
     public Transform shield;
+    public Enemy enemyScript;
+    public List<GameObject> go;
 
-    private List<GameObject> go;
+    private Animator myAnim;
     private Transform selectedObject;
     private Transform myTransform;
     private Transform pickUpTrigger;
@@ -32,20 +34,21 @@ public class Knight : MonoBehaviour
     private float step;
     private float timer;
     LevelManager levelManager;
-    Enemy enemyScript;
+
     Item swordScript;
     Item shieldScript;
 
     private void Awake()
     {
         levelManager = GameObject.FindWithTag("GameController").GetComponent<LevelManager>();
-        sword = transform.Find("Sword");
+        sword = transform.Find("Graphics").transform.Find("Knight_Body").transform.Find("Knight_ArmRight").transform.Find("Sword");
         sword.gameObject.SetActive(true);
-        shield = transform.Find("Shield");
+        shield = transform.Find("Graphics").transform.Find("Knight_Body").transform.Find("Knight_ArmLeft").transform.Find("Shield");
         shield.gameObject.SetActive(true);
         pickUpTrigger = transform.Find("PickupTrigger");
         swordScript = droppedSword.GetComponent<Item>();
         shieldScript = droppedShield.GetComponent<Item>();
+        myAnim = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -67,9 +70,19 @@ public class Knight : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (isMoving)
+        if (isMoving && !isAttacking)
         {
+            if (!isAnimatingMovement)
+            {
+                isAnimatingMovement = true;
+                myAnim.SetTrigger("StartWalking");
+            }
+
             transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
+        }
+        else
+        {
+            isAnimatingMovement = false;
         }
 
         if (isAttacking && timer >= timeBetweenAttacks)
@@ -87,7 +100,8 @@ public class Knight : MonoBehaviour
     public void Attack()
     {
         timer = 0f;
-
+        myAnim.SetTrigger("StartAttack");
+        /*
         enemyScript.TakeDamage(attackDamage);
 
         if (enemyScript.currentHealth <= 0)
@@ -96,6 +110,7 @@ public class Knight : MonoBehaviour
             isMoving = true;
             isAttacking = false;
         }
+        */
 
     }
 
@@ -117,7 +132,7 @@ public class Knight : MonoBehaviour
             //drop sword
             sword.gameObject.SetActive(false);
             pickUpTrigger.gameObject.SetActive(false);
-            droppedSword.transform.position = GetComponent<Renderer>().bounds.center;
+            droppedSword.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             droppedSword.SetActive(true);
             swordScript.Dropped();
             attackDamage = 1;
@@ -128,7 +143,7 @@ public class Knight : MonoBehaviour
             //drop shield
             shield.gameObject.SetActive(false);
             pickUpTrigger.gameObject.SetActive(false);
-            droppedShield.transform.position = GetComponent<Renderer>().bounds.center;
+            droppedShield.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             droppedShield.SetActive(true);
             shieldScript.Dropped();
             shieldPower = 0;
@@ -149,6 +164,7 @@ public class Knight : MonoBehaviour
         isDead = true;
         transform.gameObject.tag = "Dead";
         col.enabled = false;
+        myAnim.SetTrigger("StartDying");
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         StartCoroutine(WaitForDeathScene());
     }
