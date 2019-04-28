@@ -23,11 +23,13 @@ public class Squire : MonoBehaviour
     private bool isDead = false;
     private Transform top;
     private Animator myAnim;
+    LevelManager levelManager;
     Item carriedItem;
     Bomb bombScript;
 
     private void Awake()
     {
+        levelManager = GameObject.FindWithTag("GameController").GetComponent<LevelManager>();
         sword = transform.Find("Graphics").transform.Find("Squire_Body").transform.Find("Squire_ArmRight").transform.Find("Sword");
         shield = transform.Find("Graphics").transform.Find("Squire_Body").transform.Find("Squire_ArmRight").transform.Find("Shield");
         top = transform.Find("Ceilingcheck");
@@ -72,6 +74,11 @@ public class Squire : MonoBehaviour
             bomb.transform.position = top.transform.position;
             bomb.gameObject.SetActive(true);
             bombScript.Thrown();
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            levelManager.QuitRequest();
         }
     }
     private void FixedUpdate()
@@ -125,7 +132,17 @@ public class Squire : MonoBehaviour
 
     private void Death()
     {
+        isDead = true;
+        runSpeed = 0f;
+        controller.m_JumpForce = 0f;
         myAnim.SetTrigger("StartDying");
+        StartCoroutine(WaitForDeathScene());
+    }
+
+    IEnumerator WaitForDeathScene()
+    {
+        yield return new WaitForSeconds(5);
+        levelManager.LoadLevel("GameOver");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

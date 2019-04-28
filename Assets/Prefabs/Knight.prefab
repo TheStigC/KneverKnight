@@ -204,12 +204,13 @@ MonoBehaviour:
   isDead: 0
   targets: []
   currentHealth: 100
+  startingHealth: 100
   attackDamage: 5
   shieldPower: 5
   push: 10
   cooldownTimer: 2
   timeBetweenAttacks: 3
-  speed: 2
+  speed: 3
   objectTag1: Goal
   objectTag2: Enemy
   droppedSword: {fileID: 0}
@@ -218,6 +219,7 @@ MonoBehaviour:
   shield: {fileID: 0}
   enemyScript: {fileID: 0}
   go: []
+  healthSlider: {fileID: 0}
 --- !u!61 &6780552489760903324
 BoxCollider2D:
   m_ObjectHideFlags: 0

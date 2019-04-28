@@ -94,10 +94,6 @@ public class Knight : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            swordScript.Dropped();
-        }
 
     }
 
