@@ -323,7 +323,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 3
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 4933500992565776305}
   m_CeilingCheck: {fileID: 4933500992612071702}
   m_CrouchDisableCollider: {fileID: 0}
-  fallMultiplier: 5
+  fallMultiplier: 15
   lowJumpMultiplier: 4
   m_FacingRight: 1
   OnLandEvent:

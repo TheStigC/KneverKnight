@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public bool isAttacking;
-    public bool isMoving;
+    public bool isMoving, isAnimatingMovement;
     public bool isDead;
     public List<Transform> targets;
     public int currentHealth = 10;
@@ -26,12 +26,14 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb2d;
     private bool m_FacingRight = false;
     private string currentTarget;
+    private Animator myAnim;
     Knight knight;
     Squire squire;
 
 
     private void Awake()
     {
+        myAnim = GetComponentInChildren<Animator>();
         knight = GameObject.FindWithTag(objectTag1).GetComponent<Knight>();
         squire = GameObject.FindWithTag(objectTag2).GetComponent<Squire>();
     }
@@ -58,17 +60,29 @@ public class Enemy : MonoBehaviour
 
         if (isMoving && !isDead)
         {
+            if (!isAnimatingMovement)
+            {
+                isAnimatingMovement = true;
+                myAnim.SetTrigger("StartWalking");
+            }
+
+
             transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
 
-            if (transform.position.x < targets[0].position.x && !m_FacingRight)
+            if (transform.position.x < targets[0].position.x && m_FacingRight)
             {
                 Flip();
             }
-            else  if (transform.position.x > targets[0].position.x && m_FacingRight)
+            else if (transform.position.x > targets[0].position.x && !m_FacingRight)
             {
                 Flip();
             }
         }
+        else
+        {
+            isAnimatingMovement = false;
+        }
+
 
         if (isAttacking && timer >= timeBetweenAttacks)
         {
@@ -81,13 +95,14 @@ public class Enemy : MonoBehaviour
     {
         timer = 0f;
 
+        myAnim.SetTrigger("StartAttacking");
         if (currentTarget == objectTag1)
         {
             knight.TakeDamage(attackDamage);
         }
         else if (currentTarget == objectTag2)
         {
-            squire.TakeDamage(attackDamage*2);
+            squire.TakeDamage(attackDamage * 2);
         }
     }
 
@@ -110,6 +125,7 @@ public class Enemy : MonoBehaviour
         isDead = true;
         transform.gameObject.tag = "Dead";
         col.enabled = false;
+        myAnim.SetTrigger("StartDying");
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         knight.AddAllObjects();
         knight.SortTargetsByDistance();
@@ -148,11 +164,12 @@ public class Enemy : MonoBehaviour
 
     private void SortTargetsByDistance()
     {
-        targets.Sort(delegate (Transform t1, Transform t2) {
+        targets.Sort(delegate (Transform t1, Transform t2)
+        {
             return Vector3.Distance(t1.position, myTransform.position).CompareTo(Vector3.Distance(t2.position, myTransform.position));
         });
 
-        if(Vector3.Distance(targets[0].position, transform.position) > seeDistance)
+        if (Vector3.Distance(targets[0].position, transform.position) > seeDistance)
         {
             isMoving = false;
         }
@@ -170,8 +187,9 @@ public class Enemy : MonoBehaviour
             isAttacking = true;
             print("knight hit");
             currentTarget = objectTag1;
-            
-        } else if (collision.gameObject.tag == objectTag2)
+
+        }
+        else if (collision.gameObject.tag == objectTag2)
         {
             isMoving = false;
             isAttacking = true;
