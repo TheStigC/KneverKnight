@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public float push = 10f;
     public string objectTag1 = "Knight";
     public string objectTag2 = "Squire";
+    public string currentTarget;
 
     private List<GameObject> go;
     private Transform selectedObject;
@@ -25,10 +26,9 @@ public class Enemy : MonoBehaviour
     private Collider2D col;
     private Rigidbody2D rb2d;
     private bool m_FacingRight = false;
-    private string currentTarget;
     private Animator myAnim;
-    Knight knight;
-    Squire squire;
+    public Knight knight;
+    public Squire squire;
 
 
     private void Awake()
@@ -96,6 +96,7 @@ public class Enemy : MonoBehaviour
         timer = 0f;
 
         myAnim.SetTrigger("StartAttacking");
+        /*
         if (currentTarget == objectTag1)
         {
             knight.TakeDamage(attackDamage);
@@ -104,6 +105,7 @@ public class Enemy : MonoBehaviour
         {
             squire.TakeDamage(attackDamage * 2);
         }
+        */
     }
 
     public void TakeDamage(int amount)

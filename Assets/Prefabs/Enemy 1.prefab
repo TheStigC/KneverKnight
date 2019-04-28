@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6540434765533950558}
   - component: {fileID: 7492821470714622767}
+  - component: {fileID: 1281982424}
   m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
@@ -211,6 +212,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1281982424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140261647143811534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1eef7d2360eef4993da86a79f82682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4579994688302107433
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +642,7 @@ GameObject:
   - component: {fileID: 9036322182858019293}
   - component: {fileID: 9036322182858019283}
   - component: {fileID: 9036322182858019281}
-  - component: {fileID: 1986409419617041725}
+  - component: {fileID: 478404538228297782}
   m_Layer: 10
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -690,7 +703,7 @@ MonoBehaviour:
   isAnimatingMovement: 0
   isDead: 0
   targets: []
-  currentHealth: 100
+  currentHealth: 20
   attackDamage: 10
   timeBetweenAttacks: 1.5
   speed: 2
@@ -698,8 +711,11 @@ MonoBehaviour:
   push: 15
   objectTag1: Knight
   objectTag2: Squire
---- !u!61 &1986409419617041725
-BoxCollider2D:
+  currentTarget: 
+  knight: {fileID: 0}
+  squire: {fileID: 0}
+--- !u!70 &478404538228297782
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -711,19 +727,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.55, y: 2.5}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 4.96, y: 6.715}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4, y: 4.75}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.8215699, y: 2.3620093}
+  m_Size: {x: 3.580886, y: 4.543013}
+  m_Direction: 0
 --- !u!1 &9041431876555506413
 GameObject:
   m_ObjectHideFlags: 0
