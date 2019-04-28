@@ -295,7 +295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4933500992612071703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.83, z: 0}
+  m_LocalPosition: {x: 0, y: 5.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4933500994345948735}
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2a2ddb0c5952544ba93532c8fcdc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 30
+  m_JumpForce: 20
   m_CrouchSpeed: 1
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -383,6 +383,7 @@ MonoBehaviour:
   m_CrouchDisableCollider: {fileID: 0}
   fallMultiplier: 15
   lowJumpMultiplier: 4
+  m_Rigidbody2D: {fileID: 0}
   m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
@@ -409,6 +410,8 @@ MonoBehaviour:
   controller: {fileID: 4933500994345948731}
   runSpeed: 50
   isCarrying: 0
+  isWalking: 0
+  isAnimatingMovement: 0
   currentHealth: 100
   startingHealth: 100
   bombs: 1

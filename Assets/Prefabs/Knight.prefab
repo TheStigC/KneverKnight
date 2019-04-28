@@ -241,7 +241,7 @@ MonoBehaviour:
   push: 10
   cooldownTimer: 2
   timeBetweenAttacks: 3
-  speed: 3
+  speed: 4
   objectTag1: Goal
   objectTag2: Enemy
   droppedSword: {fileID: 0}

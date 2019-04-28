@@ -98,7 +98,7 @@ public class Knight : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (isMoving && !isAttacking)
         {

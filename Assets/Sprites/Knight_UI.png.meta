@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: -1052600873004008255
     second: Knight_UI_4
+  - first:
+      213: -3059178076043479658
+    second: Knight_UI_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -118,7 +121,7 @@ TextureImporter:
         width: 3690
         height: 252
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,7 +142,7 @@ TextureImporter:
         width: 89
         height: 84
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,12 +158,12 @@ TextureImporter:
       name: Knight_UI_2
       rect:
         serializedVersion: 2
-        x: 2170
-        y: 44
+        x: 2174
+        y: 175
         width: 150
         height: 143
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,12 +179,12 @@ TextureImporter:
       name: Knight_UI_3
       rect:
         serializedVersion: 2
-        x: 2451
-        y: 34
+        x: 2569
+        y: 169
         width: 285
         height: 218
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,12 +200,12 @@ TextureImporter:
       name: Knight_UI_4
       rect:
         serializedVersion: 2
-        x: 3060
-        y: 44
+        x: 3061
+        y: 178
         width: 203
         height: 176
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,6 +213,27 @@ TextureImporter:
       bones: []
       spriteID: 03cb77657f534a14aa97477dabd1df12
       internalID: -1052600873004008255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_UI_5
+      rect:
+        serializedVersion: 2
+        x: 2783
+        y: 50
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b51f178f7faf1b459e0a113d3875479
+      internalID: -3059178076043479658
       vertices: []
       indices: 
       edges: []
