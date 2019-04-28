@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 9036322182858019281}
   - component: {fileID: 1986409419617041725}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -687,11 +687,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   isMoving: 0
+  isAnimatingMovement: 0
   isDead: 0
   targets: []
-  currentHealth: 20
+  currentHealth: 100
   attackDamage: 10
-  timeBetweenAttacks: 0.5
+  timeBetweenAttacks: 1.5
   speed: 2
   seeDistance: 25
   push: 15
