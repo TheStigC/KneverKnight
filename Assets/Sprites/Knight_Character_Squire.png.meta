@@ -1,7 +1,25 @@
 fileFormatVersion: 2
 guid: 33b9b7440677d7d40baffcee853cdbd1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 5311544074426589871
+    second: Squire_ArmRight
+  - first:
+      213: -743958686563110282
+    second: Squire_ArmLeft
+  - first:
+      213: 6426518161442253081
+    second: Squire_Head
+  - first:
+      213: -6941243492562242609
+    second: Squire_LegLeft
+  - first:
+      213: 8263963798640059926
+    second: Squire_LegRight
+  - first:
+      213: -7600361484817422051
+    second: Squire_Body
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,7 +133,133 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Squire_ArmRight
+      rect:
+        serializedVersion: 2
+        x: 1171
+        y: 204
+        width: 117
+        height: 196
+      alignment: 9
+      pivot: {x: 0.5, y: 0.830345}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ecf835eeb3e6a4aa1e3f832fb5041f
+      internalID: 5311544074426589871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Squire_ArmLeft
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 447
+        width: 147
+        height: 189
+      alignment: 9
+      pivot: {x: 0.30528578, y: 0.7384812}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47fbee0da0c6b474a80703fc78c5b356
+      internalID: -743958686563110282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Squire_Head
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 830
+        width: 373
+        height: 379
+      alignment: 9
+      pivot: {x: 0.4243344, y: 0.11013915}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb9e6960788a7249aef69f8ab1866a2
+      internalID: 6426518161442253081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Squire_LegLeft
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 96
+        width: 85
+        height: 121
+      alignment: 9
+      pivot: {x: 0.28548944, y: 0.93749833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360ccdabed69f574985de6db4e17b511
+      internalID: -6941243492562242609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Squire_LegRight
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 102
+        width: 80
+        height: 125
+      alignment: 9
+      pivot: {x: 0.4737007, y: 0.9085742}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e431a2389e6fd094f9064ad32d6f0e3e
+      internalID: 8263963798640059926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Squire_Body
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 317
+        width: 636
+        height: 715
+      alignment: 9
+      pivot: {x: 0.7662575, y: 0.08901482}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 009ff8fc881d22a449ca87ef05df342b
+      internalID: -7600361484817422051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
