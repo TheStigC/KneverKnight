@@ -78,7 +78,7 @@ public class Squire : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel"))
         {
-            levelManager.QuitRequest();
+            levelManager.LoadLevel("Menu");
         }
     }
     private void FixedUpdate()

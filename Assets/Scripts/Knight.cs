@@ -73,7 +73,7 @@ public class Knight : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-
+        /*
         if (isMoving && !isAttacking)
         {
             if (!isAnimatingMovement)
@@ -88,13 +88,31 @@ public class Knight : MonoBehaviour
         {
             isAnimatingMovement = false;
         }
-
+        */
         if (isAttacking && timer >= timeBetweenAttacks)
         {
             Attack();
         }
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (isMoving && !isAttacking)
+        {
+            if (!isAnimatingMovement)
+            {
+                isAnimatingMovement = true;
+                myAnim.SetTrigger("StartWalking");
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, targets[0].position, step);
+        }
+        else
+        {
+            isAnimatingMovement = false;
+        }
     }
 
     public void Attack()
