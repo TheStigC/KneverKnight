@@ -151,6 +151,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 641325998217688500}
   shield: {fileID: 8267180750825790093}
+--- !u!1 &1459879286524639024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7105598519731162744}
+  m_Layer: 11
+  m_Name: Firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7105598519731162744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459879286524639024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6780552489760903314}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6780552489760903312
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +213,7 @@ Transform:
   m_Children:
   - {fileID: 4885807096819472693}
   - {fileID: 8443111373283924196}
+  - {fileID: 7105598519731162744}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -220,6 +251,9 @@ MonoBehaviour:
   enemyScript: {fileID: 0}
   go: []
   healthSlider: {fileID: 0}
+  hitParticle: {fileID: 8998626909372982185, guid: cba05d92d0aa7d44dab4b74f936917f7,
+    type: 3}
+  firePoint: {fileID: 1459879286524639024}
 --- !u!61 &6780552489760903324
 BoxCollider2D:
   m_ObjectHideFlags: 0

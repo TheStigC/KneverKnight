@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public string objectTag1 = "Knight";
     public string objectTag2 = "Squire";
     public string currentTarget;
+    public GameObject hitParticle,firePoint;
 
     private List<GameObject> go;
     private Transform selectedObject;
@@ -96,6 +97,7 @@ public class Enemy : MonoBehaviour
         timer = 0f;
 
         myAnim.SetTrigger("StartAttacking");
+        SpawnHitParticl();
         /*
         if (currentTarget == objectTag1)
         {
@@ -207,6 +209,12 @@ public class Enemy : MonoBehaviour
             isAttacking = false;
             isMoving = true;
         }
+    }
+
+    private void SpawnHitParticl()
+    {
+        var particleObject = Instantiate(hitParticle, firePoint.transform.position, Quaternion.identity);
+        Destroy(particleObject, 2f);
     }
 
 }

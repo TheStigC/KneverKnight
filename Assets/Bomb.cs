@@ -11,6 +11,7 @@ public class Bomb : MonoBehaviour
     public float expForce = 100f;
     public int damage = 10;
     public bool throwReady = true;
+    public GameObject bombParticle;
 
     public Rigidbody2D rb2d;
     private float throwPower;
@@ -59,6 +60,7 @@ public class Bomb : MonoBehaviour
                 Enemy enemy = rb.GetComponent<Enemy>();
                 if(enemy)
                 enemy.TakeDamage(damage);
+                SpawnBombParticle();
 
                 Vector3 deltaPos = rb.transform.position - transform.position;
 
@@ -68,5 +70,11 @@ public class Bomb : MonoBehaviour
         }
         gameObject.SetActive(false);
         throwReady = true;
+    }
+
+    private void SpawnBombParticle()
+    {
+        var particleObject = Instantiate(bombParticle, this.transform.position, Quaternion.identity);
+        Destroy(particleObject, 2f);
     }
 }

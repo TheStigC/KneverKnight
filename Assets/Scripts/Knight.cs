@@ -27,6 +27,7 @@ public class Knight : MonoBehaviour
     public Enemy enemyScript;
     public List<GameObject> go;
     public Slider healthSlider;
+    public GameObject hitParticle, firePoint;
 
     private Animator myAnim;
     private Transform selectedObject;
@@ -119,6 +120,7 @@ public class Knight : MonoBehaviour
     {
         timer = 0f;
         myAnim.SetTrigger("StartAttack");
+        SpawnHitParticl();
         /*
         enemyScript.TakeDamage(attackDamage);
 
@@ -263,6 +265,12 @@ public class Knight : MonoBehaviour
             isMoving = false;
             levelManager.FadeToLevel();
         }
+    }
+
+    private void SpawnHitParticl()
+    {
+        var particleObject = Instantiate(hitParticle, firePoint.transform.position, Quaternion.identity);
+        Destroy(particleObject, 2f);
     }
 
 

@@ -139,4 +139,6 @@ MonoBehaviour:
   expForce: 300
   damage: 10
   throwReady: 1
+  bombParticle: {fileID: 8998626909372982185, guid: 600ced9cfb5d3854591c57cbf64793dd,
+    type: 3}
   rb2d: {fileID: 0}
